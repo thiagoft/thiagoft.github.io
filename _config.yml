@@ -21,8 +21,8 @@
 title: Thiago.F.T
 email: thiagoftahara@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Blog maneiro criado para me auxiliar nos estudos e de quebra ajudar pessoas 
-  que possam estar precisando de uma forcinha.
+  Blog maneiro sobre tecnologia criado para me auxiliar nos estudos e de quebra ajudar pessoas 
+  que possam estar precisando de uma força.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://thiagoft.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: thiagoftahara
@@ -32,6 +32,7 @@ github_username:  thiagoft
 theme: minima
 plugins:
   - jekyll-feed
+permalink: /:title
 
 # Exclude from processing.
 # The following items will not be processed, by default.
