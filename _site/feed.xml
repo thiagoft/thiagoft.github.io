@@ -1,1 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://thiagoft.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://thiagoft.github.io/" rel="alternate" type="text/html" /><updated>2019-10-26T16:37:03-03:00</updated><id>http://thiagoft.github.io/feed.xml</id><title type="html">Thiago.F.T</title><subtitle>Blog maneiro sobre tecnologia criado para me auxiliar nos estudos e de quebra ajudar pessoas  que possam estar precisando de uma força.</subtitle><entry><title type="html">Testando primeiro post</title><link href="http://thiagoft.github.io/testando-post" rel="alternate" type="text/html" title="Testando primeiro post" /><published>2019-10-26T15:58:41-03:00</published><updated>2019-10-26T15:58:41-03:00</updated><id>http://thiagoft.github.io/testando-post</id><content type="html" xml:base="http://thiagoft.github.io/testando-post">&lt;p&gt;Testando o primeiro post.&lt;/p&gt;</content><author><name></name></author><summary type="html">Testando o primeiro post.</summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://thiagoft.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://thiagoft.github.io/" rel="alternate" type="text/html" /><updated>2019-11-01T06:18:00-03:00</updated><id>http://thiagoft.github.io/feed.xml</id><title type="html">Thiago.F.T</title><subtitle>Blog maneiro sobre tecnologia criado para me auxiliar nos estudos e de quebra ajudar pessoas  que possam estar precisando de uma força.</subtitle><entry><title type="html">Escrevendo conteúdo com Markdown</title><link href="http://thiagoft.github.io/testando-post" rel="alternate" type="text/html" title="Escrevendo conteúdo com Markdown" /><published>2019-10-28T23:33:41-03:00</published><updated>2019-10-28T23:33:41-03:00</updated><id>http://thiagoft.github.io/testando-post</id><content type="html" xml:base="http://thiagoft.github.io/testando-post">&lt;p&gt;Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Markdown foi criado para facilitar a forma de escrever conteúdo para web, porém como tudo por aqui é HTML, então nada mais justo que este conteúdo escrito de forma fácil e legível também ser convertido facilmente em HTML através de um processador.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;sintaxe&quot;&gt;Sintaxe&lt;/h2&gt;
+
+&lt;h3 id=&quot;destacando-conteúdo&quot;&gt;Destacando conteúdo&lt;/h3&gt;
+
+&lt;h5 id=&quot;negrito&quot;&gt;Negrito&lt;/h5&gt;
+
+&lt;p&gt;Para marcar o texto com &lt;strong&gt;negrito&lt;/strong&gt; basta digitar o conteúdo entre quatro asteristicos assim: &lt;code class=&quot;highlighter-rouge&quot;&gt;**negrito**&lt;/code&gt; ou entre quatro underlines assim: &lt;code class=&quot;highlighter-rouge&quot;&gt;__negrito__&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;itálico&quot;&gt;Itálico&lt;/h5&gt;
+
+&lt;p&gt;Para &lt;em&gt;itálico&lt;/em&gt; basta digitar o conteúdo entre asterísticos &lt;code class=&quot;highlighter-rouge&quot;&gt;*itálico*&lt;/code&gt; ou entre underlines &lt;code class=&quot;highlighter-rouge&quot;&gt;_itálico_&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;título&quot;&gt;Título&lt;/h3&gt;
+
+&lt;p&gt;Para trabalhar com títulos temos a seguinte código:&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Título &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;
+## Título &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;
+### Título &lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;
+#### Título &lt;span class=&quot;nt&quot;&gt;&amp;lt;h4&amp;gt;&lt;/span&gt;
+##### Título &lt;span class=&quot;nt&quot;&gt;&amp;lt;h5&amp;gt;&lt;/span&gt;
+###### Título &lt;span class=&quot;nt&quot;&gt;&amp;lt;h6&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Que produz especificamente este resultado&lt;/p&gt;
+&lt;h1 id=&quot;título-1&quot;&gt;Título&lt;/h1&gt;
+&lt;h2 id=&quot;título-2&quot;&gt;Título&lt;/h2&gt;
+&lt;h3 id=&quot;título-3&quot;&gt;Título&lt;/h3&gt;
+&lt;h4 id=&quot;título-4&quot;&gt;Título&lt;/h4&gt;
+&lt;h5 id=&quot;título-5&quot;&gt;Título&lt;/h5&gt;
+&lt;h6 id=&quot;título-6&quot;&gt;Título&lt;/h6&gt;
+
+&lt;h3 id=&quot;lista-de-itens&quot;&gt;Lista de itens&lt;/h3&gt;
+
+&lt;p&gt;Para lista de itens e sub-item não ordenados:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* item
+* item
+* item
+  * item
+    * item
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Resultado:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;item&lt;/li&gt;
+  &lt;li&gt;item&lt;/li&gt;
+  &lt;li&gt;item
+    &lt;ul&gt;
+      &lt;li&gt;item
+        &lt;ul&gt;
+          &lt;li&gt;item&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Para lista de itens ordenados:&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. item
+2. item
+3. item
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Resultado:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;item&lt;/li&gt;
+  &lt;li&gt;item&lt;/li&gt;
+  &lt;li&gt;item&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:</summary></entry></feed>
