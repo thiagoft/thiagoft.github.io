@@ -3,19 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Testando primeiro post | Thiago.F.T</title>
+<title>Escrevendo conteúdo com Markdown | Thiago.F.T</title>
 <meta name="generator" content="Jekyll v4.0.0" />
-<meta property="og:title" content="Testando primeiro post" />
+<meta property="og:title" content="Escrevendo conteúdo com Markdown" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Testando o primeiro post." />
-<meta property="og:description" content="Testando o primeiro post." />
+<meta name="description" content="Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:" />
+<meta property="og:description" content="Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:" />
 <link rel="canonical" href="http://thiagoft.github.io/testando-post" />
 <meta property="og:url" content="http://thiagoft.github.io/testando-post" />
 <meta property="og:site_name" content="Thiago.F.T" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-10-26T15:58:41-03:00" />
+<meta property="article:published_time" content="2019-10-28T23:33:41-03:00" />
 <script type="application/ld+json">
-{"datePublished":"2019-10-26T15:58:41-03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://thiagoft.github.io/testando-post"},"url":"http://thiagoft.github.io/testando-post","description":"Testando o primeiro post.","headline":"Testando primeiro post","dateModified":"2019-10-26T15:58:41-03:00","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"http://thiagoft.github.io/testando-post","mainEntityOfPage":{"@type":"WebPage","@id":"http://thiagoft.github.io/testando-post"},"description":"Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:","headline":"Escrevendo conteúdo com Markdown","dateModified":"2019-10-28T23:33:41-03:00","datePublished":"2019-10-28T23:33:41-03:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://thiagoft.github.io/feed.xml" title="Thiago.F.T" /></head>
 <body><header class="site-header" role="banner">
@@ -38,14 +38,90 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Testando primeiro post</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Escrevendo conteúdo com Markdown</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2019-10-26T15:58:41-03:00" itemprop="datePublished">Oct 26, 2019
+      <time class="dt-published" datetime="2019-10-28T23:33:41-03:00" itemprop="datePublished">Oct 28, 2019
       </time></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Testando o primeiro post.</p>
+    <p>Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:</p>
+
+<ul>
+  <li>Markdown foi criado para facilitar a forma de escrever conteúdo para web, porém como tudo por aqui é HTML, então nada mais justo que este conteúdo escrito de forma fácil e legível também ser convertido facilmente em HTML através de um processador.</li>
+</ul>
+
+<h2 id="sintaxe">Sintaxe</h2>
+
+<h3 id="destacando-conteúdo">Destacando conteúdo</h3>
+
+<h5 id="negrito">Negrito</h5>
+
+<p>Para marcar o texto com <strong>negrito</strong> basta digitar o conteúdo entre quatro asteristicos assim: <code class="highlighter-rouge">**negrito**</code> ou entre quatro underlines assim: <code class="highlighter-rouge">__negrito__</code>.</p>
+
+<h5 id="itálico">Itálico</h5>
+
+<p>Para <em>itálico</em> basta digitar o conteúdo entre asterísticos <code class="highlighter-rouge">*itálico*</code> ou entre underlines <code class="highlighter-rouge">_itálico_</code>.</p>
+
+<h3 id="título">Título</h3>
+
+<p>Para trabalhar com títulos temos a seguinte código:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Título <span class="nt">&lt;h1&gt;</span>
+## Título <span class="nt">&lt;h2&gt;</span>
+### Título <span class="nt">&lt;h3&gt;</span>
+#### Título <span class="nt">&lt;h4&gt;</span>
+##### Título <span class="nt">&lt;h5&gt;</span>
+###### Título <span class="nt">&lt;h6&gt;</span>
+</code></pre></div></div>
+<p>Que produz especificamente este resultado</p>
+<h1 id="título-1">Título</h1>
+<h2 id="título-2">Título</h2>
+<h3 id="título-3">Título</h3>
+<h4 id="título-4">Título</h4>
+<h5 id="título-5">Título</h5>
+<h6 id="título-6">Título</h6>
+
+<h3 id="lista-de-itens">Lista de itens</h3>
+
+<p>Para lista de itens e sub-item não ordenados:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* item
+* item
+* item
+  * item
+    * item
+</code></pre></div></div>
+
+<p>Resultado:</p>
+
+<ul>
+  <li>item</li>
+  <li>item</li>
+  <li>item
+    <ul>
+      <li>item
+        <ul>
+          <li>item</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Para lista de itens ordenados:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. item
+2. item
+3. item
+</code></pre></div></div>
+
+<p>Resultado:</p>
+
+<ol>
+  <li>item</li>
+  <li>item</li>
+  <li>item</li>
+</ol>
 
   </div><a class="u-url" href="/testando-post" hidden></a>
 </article>
