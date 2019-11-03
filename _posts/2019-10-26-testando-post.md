@@ -72,3 +72,88 @@ Resultado:
 1. item
 2. item 
 3. item
+
+### Links
+
+Para criar links devemos escrever o conteudo entre couchetes, e em seguida entre parênteses a referência.
+
+```markdown
+[isto é um link](https://thiagoft.github.io/testando-post)
+```
+
+Resultado: 
+
+[isto é um link](https://thiagoft.github.io/testando-post)
+
+### Código no texto
+
+Para referenciar um código no meio do texto podemos digitar:
+
+```markdown
+`conteudo`
+``` 
+ou
+```markdown
+~conteudo~
+``` 
+
+ou criar uma caixa de codigo para um conteúdo de mais de uma linha.
+
+~~~markdown
+```markdown
+codigo
+```
+~~~
+
+ou
+
+```markdown
+~~~markdown
+codigo
+~~~
+```
+
+*Um detalhe é que no caso da caixa de código você pode especificar a linguagem do conteúdo substituindo **markdown** pela linguagem que você quiser.*
+
+### Imagens
+
+Para adicionar uma imagem:
+
+```markdown
+![conteúdo do highlight da imagem](link da imagem)
+```
+Resultado:
+![conteúdo do highlight da imagem](https://github.blog/wp-content/uploads/2013/04/074d0b06-a5e3-11e2-8b7f-9f09eb2ddfae.jpg?resize=1234%2C701)
+
+### Citações
+
+Para criar uma citação:
+```markdown
+> texto da citação
+```
+
+Resultado:
+
+> Testando uma citação.
+
+### Tabelas
+
+Para criar uma tabela:
+
+```markdown
+| Cabeçalho 1 | Cabeçalho 2 | Cabeçalho 3 |
+| --- | --- | --- |
+| Conteúdo 1 | Conteúdo 2 | Conteúdo 3 |
+| Conteúdo 4 | Conteúdo 5 | Conteúdo 6 |
+```
+
+Resultado:
+
+| Cabeçalho 1 | Cabeçalho 2 | Cabeçalho 3 |
+| --- | --- | --- |
+| Conteúdo 1 | Conteúdo 2 | Conteúdo 3 |
+| Conteúdo 4 | Conteúdo 5 | Conteúdo 6 |
+
+### Conclusão
+
+Então é isso, o markdown simplifica muito as coisas para criação de conteúdo em páginas estáticas. Agora você pode criar seu "README" em seu repositório no [github](https://www.github.com) e escrever seu blog em processadores de páginas estáticas.
