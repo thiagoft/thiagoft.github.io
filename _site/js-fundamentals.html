@@ -1,0 +1,168 @@
+<p>Este post é um guia prático abordando tópicos fundamentais da sintaxe atual do javascript.</p>
+
+<h2 id="const">Const</h2>
+
+<p>Constantes como o próprio nome ja diz, matem um valor constante, ou seja, que não muda.</p>
+
+<ul>
+  <li>O valor de uma constante não pode ser alterado, tentar faze-lo resultará em erro.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+<span class="nx">age</span> <span class="o">=</span> <span class="mi">29</span><span class="p">;</span> <span class="c1">//error: age is read-only</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Se alterar uma constante gera um erro, então não inicializa-la também gerará.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">age</span><span class="p">;</span> <span class="c1">//error: Unexpected token</span>
+</code></pre></div></div>
+
+<h2 id="let-e-var---declarando-variáveis">let e var - Declarando variáveis</h2>
+
+<p><code class="highlighter-rouge">let</code> - keyword para declaração de variáveis com escopo de bloco.</p>
+
+<p><code class="highlighter-rouge">var</code> - keyword para declaração de variáveis com escopo global.</p>
+
+<p>Vejamos alguns exemplos:</p>
+
+<ul>
+  <li>Para utilizar uma variável com escopo de bloco ela deve ser declarada antes do uso pois códigos Javascript são lidos de cima para baixo.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">//error:  age is not defined</span>
+<span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span> 
+</code></pre></div></div>
+<ul>
+  <li>Uma variável com escopo global pode ser utilizada antes da declaração explicita. E isso é muito estranho dada a regra de <code class="highlighter-rouge">let</code>, porém sim, funciona.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">//imprime undefined</span>
+<span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span> 
+</code></pre></div></div>
+
+<ul>
+  <li>Outro exemplo de declaração com var onde o uso da variável age é permitido fora do escopo de bloco de <code class="highlighter-rouge">if</code>.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">//imprime 31</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Já no exemplo abaixo <code class="highlighter-rouge">age</code> declarada com let, existirá somente dentro do escopo do bloco de <code class="highlighter-rouge">if</code>, gerando erro ao ser utilizada fora.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">age</span><span class="p">);</span> <span class="c1">//error: age is not defined</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>Uma boa prática é sempre utilizar let a var, para evitar bagunça em seu escopo global.</p>
+</blockquote>
+
+<h2 id="rest-parameters">Rest Parameters</h2>
+
+<p>Rest parameters são utilizados para enviar multiplos parâmetros para uma função, sem que seja necessária a declaração explicita.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">carModels</span><span class="p">(...</span><span class="nx">carModels</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">carModels</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">carModel</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">carModel</span><span class="p">));</span> <span class="c1">// Uno Versa Fusca</span>
+<span class="p">}</span>
+
+<span class="nx">carModels</span><span class="p">(</span><span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Versa</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Fusca</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Um outro exemplo é que outros parâmetros podem ser utilizados antes do rest parameter:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">carModels</span><span class="p">(</span><span class="nx">brand</span><span class="p">,</span> <span class="p">...</span><span class="nx">carModels</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">carModels</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">carModel</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">carModel</span><span class="p">));</span> <span class="c1">// Uno Versa Fusca</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">brand</span><span class="p">);</span> <span class="c1">// Fiat</span>
+<span class="p">}</span>
+
+<span class="nx">carModels</span><span class="p">(</span><span class="dl">'</span><span class="s1">Fiat</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Toro</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Linea</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>OBS: Não são permitidos parâmetros após a declaração de um rest parameter, dado seu funcionamento.</p>
+</blockquote>
+
+<h2 id="destructuring-arrays">Destructuring Arrays</h2>
+
+<p>A desconstrução de arrays atribuirá os elementros de um array para as variáveis declaradas entre couchetes como no exemplo abaixo:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">carModels</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Versa</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Fusca</span><span class="dl">'</span><span class="p">];</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">model2</span><span class="p">,</span> <span class="nx">model3</span><span class="p">]</span> <span class="o">=</span> <span class="nx">carModels</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">model2</span><span class="p">,</span> <span class="nx">model3</span><span class="p">);</span> <span class="c1">// 'Uno', 'Versa', 'Fusca'</span>
+</code></pre></div></div>
+
+<p>outro exemplo:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">carModels</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Versa</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Fusca</span><span class="dl">'</span><span class="p">];</span>
+<span class="kd">let</span> <span class="p">[</span><span class="nx">model1</span><span class="p">,</span> <span class="p">...</span><span class="nx">carModels</span><span class="p">]</span> <span class="o">=</span> <span class="nx">carModels</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">carModels</span><span class="p">);</span> <span class="c1">// 'Uno', ['Versa', 'Fusca']</span>
+</code></pre></div></div>
+
+<h2 id="destructuring-objects">Destructuring Objects</h2>
+
+<p>A regra para a desconstrução de objetos é a mesma que as arrays, porém, agora estamos falando de objetos:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span> <span class="na">model</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2019</span> <span class="p">};</span>
+<span class="kd">let</span> <span class="p">{</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">car</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">year</span><span class="p">);</span> <span class="c1">// Uno 2019</span>
+</code></pre></div></div>
+
+<p>Neste próximo exemplo há uma exceção lançada quando tento desconstruir o objeto <code class="highlighter-rouge">car</code> para as variáveis <code class="highlighter-rouge">model</code> e <code class="highlighter-rouge">year</code>, isto porque o uso de <code class="highlighter-rouge">{}</code> é utilizado para blocos de código e neste caso existe a confusão se isto é um bloco ou uma desconstrução. Utilizando <code class="highlighter-rouge">()</code>,  existe agora a distinção e tudo funciona normalmente.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">car</span> <span class="o">=</span> <span class="p">{</span> <span class="na">model</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2019</span> <span class="p">};</span>
+<span class="kd">let</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span><span class="p">;</span>
+
+<span class="p">{</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">car</span><span class="p">;</span> <span class="c1">// Unexpected token</span>
+<span class="p">({</span> <span class="nx">model</span><span class="p">,</span> <span class="nx">year</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">car</span><span class="p">);</span> <span class="c1">// OK</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">model</span><span class="p">,</span> <span class="nx">year</span><span class="p">);</span> <span class="c1">//// Uno 2019</span>
+</code></pre></div></div>
+
+<h2 id="spread-syntax">Spread Syntax</h2>
+
+<p><em>Spread syntax</em> funciona da forma oposta a <em>rest parameter</em>, exemplo:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">setCarModels</span><span class="p">(</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">model2</span><span class="p">,</span> <span class="nx">model3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">model2</span><span class="p">,</span> <span class="nx">model3</span><span class="p">);</span> <span class="c1">// Uno Versa Gol</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">carModels</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Versa</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Gol</span><span class="dl">'</span><span class="p">];</span>
+<span class="nx">setCarModels</span><span class="p">(...</span><span class="nx">carModels</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>outro exemplo:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">setCarModels</span><span class="p">(</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">model2</span><span class="p">,</span> <span class="p">...</span><span class="nx">carModels</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">model1</span><span class="p">,</span> <span class="nx">model2</span><span class="p">,</span> <span class="nx">carModels</span><span class="p">);</span> <span class="c1">// Uno Versa [Gol]</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">carModels</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">Uno</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Versa</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Gol</span><span class="dl">'</span><span class="p">];</span>
+<span class="nx">setCarModels</span><span class="p">(...</span><span class="nx">carModels</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="typeof">typeof()</h2>
+
+<p>Imprime o tipo do parametro enviado.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typeof</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// number</span>
+<span class="k">typeof</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span> <span class="c1">// boolean</span>
+<span class="k">typeof</span><span class="p">(</span><span class="dl">'</span><span class="s1">YeeeY</span><span class="dl">'</span><span class="p">)</span> <span class="c1">// string</span>
+<span class="k">typeof</span><span class="p">(</span><span class="kd">function</span><span class="p">(){})</span> <span class="c1">// function</span>
+<span class="k">typeof</span><span class="p">({})</span> <span class="c1">// object</span>
+<span class="k">typeof</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span> <span class="c1">// object   - WHAT?!?!?!?!</span>
+<span class="k">typeof</span><span class="p">(</span><span class="kc">undefined</span><span class="p">)</span> <span class="c1">// undefined</span>
+<span class="k">typeof</span><span class="p">(</span><span class="kc">NaN</span><span class="p">)</span> <span class="c1">// number</span>
+</code></pre></div></div>
