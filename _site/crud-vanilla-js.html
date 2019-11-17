@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Criando um CRUD com Javascript Vanilla | Thiago.F.T</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Criando um CRUD com Javascript Vanilla" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas." />
+<meta property="og:description" content="Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas." />
+<link rel="canonical" href="http://thiagoft.github.io/crud-vanilla-js" />
+<meta property="og:url" content="http://thiagoft.github.io/crud-vanilla-js" />
+<meta property="og:site_name" content="Thiago.F.T" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-11-04T21:45:55-03:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://thiagoft.github.io/crud-vanilla-js","mainEntityOfPage":{"@type":"WebPage","@id":"http://thiagoft.github.io/crud-vanilla-js"},"description":"Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas.","headline":"Criando um CRUD com Javascript Vanilla","dateModified":"2019-11-04T21:45:55-03:00","datePublished":"2019-11-04T21:45:55-03:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://thiagoft.github.io/feed.xml" title="Thiago.F.T" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Thiago.F.T</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">Thiago.F.T</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Criando um CRUD com Javascript Vanilla</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-11-04T21:45:55-03:00" itemprop="datePublished">Nov 4, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas.</p>
+
+<p>E quanto a “CRUD”? Bom, essa é fácil, é um acrônimo para <strong>C</strong>reate, <strong>R</strong>ead, <strong>U</strong>pdate, <strong>Delete</strong>, ou seja, uma interface ou serviço que realizará operações de Criação, Leitura, Atualização e Deleção.</p>
+
+<p>Então vamos lá, mãos a obra.</p>
+
+<p>Primeiramente criamos o arquivo html com o nome index. Este é o arquivo principal de nosso CRUD e é ele que é chamado quando digitamos o endereço virtual de nosso site.</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Código:</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"pt"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1, shrink-to-fit=no"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;title&gt;</span>Products<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"container"</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/app/helpers/ArrayUtils.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/app/helpers/DateUtils.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/app/models/Product.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/app/models/ProductList.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/app/view/ProductView.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"js/app/controllers/ProductController.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+    <span class="nt">&lt;script&gt;</span>
+        <span class="kd">let</span> <span class="nx">productController</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProductController</span><span class="p">();</span>
+    <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Agora vamos dar vida ao html com o código JavaScript.</p>
+
+<p>Primeiramente vamos escrever o arquivo que representará nosso Produto:</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+        <li>js
+          <ul>
+            <li>app
+              <ul>
+                <li>models
+                  <ul>
+                    <li>Product.js</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Código:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Product</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">description</span><span class="p">,</span> <span class="nx">price</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">,</span><span class="nx">tax</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_description</span> <span class="o">=</span> <span class="nx">description</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_price</span> <span class="o">=</span> <span class="nx">price</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_quantity</span> <span class="o">=</span> <span class="nx">quantity</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_tax</span> <span class="o">=</span> <span class="nx">tax</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_total</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">calculateTotal</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">id</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_id</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">description</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_description</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">price</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_price</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">quantity</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_quantity</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">tax</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_tax</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">total</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_total</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">calculateTotal</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_price</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">_quantity</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">_tax</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>E então o arquivo que representará nossa Lista de Produtos.</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+        <li>js
+          <ul>
+            <li>app
+              <ul>
+                <li>models
+                  <ul>
+                    <li>Product.js</li>
+                    <li>ProductList.js</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Código:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">ProductList</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_products</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+
+    <span class="nx">add</span><span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_products</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">product</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">products</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//Hack to makes _products imutable;</span>
+        <span class="c1">// return [].concat(this._products);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_products</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">set</span> <span class="nx">products</span><span class="p">(</span><span class="nx">products</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_products</span> <span class="o">=</span> <span class="nx">products</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">findById</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">productToReturn</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_products</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">product</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">product</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">productToReturn</span> <span class="o">=</span> <span class="nx">product</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="nx">productToReturn</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Agora a interface que será adicionada por código javascript em nosso index.html contendo o formulário e botões e interações.</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+        <li>js
+          <ul>
+            <li>app
+              <ul>
+                <li>models
+                  <ul>
+                    <li>Product.js</li>
+                    <li>ProductList.js</li>
+                  </ul>
+                </li>
+                <li>view
+                  <ul>
+                    <li>ProductView.js</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Código:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">ProductView</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_container</span> <span class="o">=</span> <span class="nx">container</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">update</span><span class="p">(</span><span class="nx">productList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_container</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="nx">productList</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">template</span><span class="p">(</span><span class="nx">productList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">`&lt;div&gt;
+                    &lt;h2&gt;Products&lt;/h2&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;form id="productForm" onsubmit="productController.save(event)"&gt;
+                        &lt;label for="idInput"&gt;Code&lt;/label&gt;
+                        &lt;input type="number" name="idInput" placeholder="Item code"&gt;
+
+                        &lt;label for="descriptionInput"&gt;Description&lt;/label&gt;
+                        &lt;input type="text" name="descriptionInput" placeholder="Item description"&gt;
+
+                        &lt;label for="priceInput"&gt;Price&lt;/label&gt;
+                        &lt;input type="number" name="priceInput" placeholder="Item Price"&gt;
+
+                        &lt;label for="quantityInput"&gt;Quantity&lt;/label&gt;
+                        &lt;input type="number" name="quantityInput" placeholder="Quantity"&gt;
+
+                        &lt;label for="taxInput"&gt;Tax&lt;/label&gt;
+                        &lt;input type="number" name="taxInput" placeholder="Tax"&gt;
+
+                        &lt;button id="btnSave"&gt;Save&lt;/button&gt;
+                    &lt;/form&gt;
+                &lt;/div&gt;
+
+                &lt;div&gt;
+                    &lt;hr/&gt;
+                    &lt;table id="productTable" class="table table-striped" &gt;
+                        &lt;thead&gt;
+                            &lt;tr&gt;
+                                &lt;th scope="col"&gt;Code&lt;/th&gt;
+                                &lt;th scope="col"&gt;Description&lt;/th&gt;
+                                &lt;th scope="col"&gt;Quantity&lt;/th&gt;
+                                &lt;th scope="col"&gt;Price&lt;/th&gt;
+                                &lt;th scope="col"&gt;Tax&lt;/th&gt;
+                                &lt;th scope="col"&gt;Montant&lt;/th&gt;
+                                &lt;th scope="col"&gt;Edit&lt;/th&gt;
+                                &lt;th scope="col"&gt;Remove&lt;/th&gt;
+                            &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+                        </span><span class="p">${</span>
+                            <span class="nx">productList</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">product</span> <span class="o">=&gt;</span> <span class="s2">`
+                                &lt;tr&gt;
+                                    &lt;td id="productId" &gt;</span><span class="p">${</span><span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                                    &lt;td id="productDescription" &gt;</span><span class="p">${</span><span class="nx">product</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                                    &lt;td id="price" &gt;</span><span class="p">${</span><span class="nx">product</span><span class="p">.</span><span class="nx">price</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                                    &lt;td id="quantity" &gt;</span><span class="p">${</span><span class="nx">product</span><span class="p">.</span><span class="nx">quantity</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                                    &lt;td id="tax" &gt;</span><span class="p">${</span><span class="nx">product</span><span class="p">.</span><span class="nx">tax</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                                    &lt;td&gt;</span><span class="p">${</span><span class="nx">product</span><span class="p">.</span><span class="nx">total</span><span class="p">}</span><span class="s2">&lt;/td&gt;
+                                    &lt;td&gt;&lt;img src="/img/edit.svg" width="16px" height="16px" onclick="productController.edit(event)" /&gt;&lt;/td&gt;
+                                    &lt;td&gt;&lt;img src="/img/remove.svg" width="16px" height="16px" onclick="productController.remove(event)" /&gt;&lt;/td&gt;
+                                &lt;/tr&gt;
+                            `</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
+                        <span class="p">}</span><span class="s2">
+                        &lt;/tbody&gt;
+                        &lt;tfoot&gt;
+                        &lt;/tfoot&gt;
+                    &lt;/table&gt;
+                &lt;/div&gt;`</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>E finalmente o arquivo que será o controlador de toda interação entre nossa interface html e as funcionalidades escritas em javascripts.</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+        <li>js
+          <ul>
+            <li>app
+              <ul>
+                <li>models
+                  <ul>
+                    <li>Product.js</li>
+                    <li>ProductList.js</li>
+                  </ul>
+                </li>
+                <li>view
+                  <ul>
+                    <li>ProductView.js</li>
+                  </ul>
+                </li>
+                <li>controllers
+                  <ul>
+                    <li>ProductController.js</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Código:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">ProductController</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+       <span class="c1">//setting querySelector function to $</span>
+       <span class="kd">let</span> <span class="nx">$</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nb">document</span><span class="p">);</span>
+       <span class="kd">let</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">"</span><span class="s2">#container</span><span class="dl">"</span><span class="p">);</span>
+
+       <span class="k">this</span><span class="p">.</span><span class="nx">_productView</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProductView</span><span class="p">(</span><span class="nx">container</span><span class="p">);</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProductList</span><span class="p">();</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">_productView</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">);</span>
+       
+    <span class="p">}</span>
+
+    <span class="nx">save</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="kd">let</span> <span class="nx">editedProduct</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_createProduct</span><span class="p">();</span>
+        <span class="kd">let</span> <span class="nx">productOld</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">editedProduct</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">productOld</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_findProductById</span><span class="p">(</span><span class="nx">productOld</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="nx">ArrayUtils</span><span class="p">.</span><span class="nx">removeIndex</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">products</span><span class="p">,</span><span class="nx">index</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">editedProduct</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_productView</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">_findProductById</span><span class="p">(</span><span class="nx">productId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">indexToRemove</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">productId</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">indexToRemove</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="nx">indexToRemove</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">edit</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#productForm</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">row</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+
+        <span class="nx">form</span><span class="p">.</span><span class="nx">idInput</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#productId</span><span class="dl">"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">descriptionInput</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#productDescription</span><span class="dl">"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">priceInput</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#price</span><span class="dl">"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">quantityInput</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#quantity</span><span class="dl">"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">taxInput</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#tax</span><span class="dl">"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">remove</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">row</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+        <span class="kd">let</span> <span class="nx">productId</span> <span class="o">=</span> <span class="nx">row</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#productId</span><span class="dl">"</span><span class="p">).</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="kd">let</span> <span class="nx">indexToRemove</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">productId</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">indexToRemove</span> <span class="o">=</span> <span class="nx">index</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="nx">ArrayUtils</span><span class="p">.</span><span class="nx">removeIndex</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_productList</span><span class="p">.</span><span class="nx">products</span><span class="p">,</span> <span class="nx">indexToRemove</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">_createProduct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">form</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#productForm</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">product</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Product</span><span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">idInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">descriptionInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">priceInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">quantityInput</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+        <span class="nx">form</span><span class="p">.</span><span class="nx">taxInput</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+
+        <span class="nx">form</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nx">product</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Foram utilizados 2 arquivos a mais com a funcionalidade de Formatar Datas e outro de Controlar conjuntos de itens.</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+        <li>js
+          <ul>
+            <li>app
+              <ul>
+                <li>models
+                  <ul>
+                    <li>Product.js</li>
+                    <li>ProductList.js</li>
+                  </ul>
+                </li>
+                <li>view
+                  <ul>
+                    <li>ProductView.js</li>
+                  </ul>
+                </li>
+                <li>controllers
+                  <ul>
+                    <li>ProductController.js</li>
+                  </ul>
+                </li>
+                <li>helpers
+                  <ul>
+                    <li>ArrayUtils.js</li>
+                    <li>DateUtils.js</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Código ArrayUtils.js:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">ArrayUtils</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">ArrayUtils cannot be instantiated.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="nx">removeIndex</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">ArrayUtils</span><span class="p">.</span><span class="nx">isArrayValid</span><span class="p">(</span><span class="nx">array</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nx">newArray</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">element</span><span class="p">,</span><span class="nx">elementIndex</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">elementIndex</span> <span class="o">!=</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">newArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+
+            <span class="k">return</span> <span class="nx">newArray</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">array</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="nx">isArrayValid</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">array</span> <span class="o">!=</span> <span class="dl">"</span><span class="s2">undefined</span><span class="dl">"</span>  
+                <span class="o">&amp;&amp;</span> <span class="nx">array</span> <span class="o">!=</span> <span class="kc">null</span>  
+                <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="kc">null</span>  
+                <span class="o">&amp;&amp;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Código DateUtils.js:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">DateUtils</span> <span class="p">{</span>
+
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">DateUtils cannot be instantiated.</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="nx">textToDate</span><span class="p">(</span><span class="nx">textToConvert</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="sr">/</span><span class="se">\d{4}</span><span class="sr">-</span><span class="se">\d{2}</span><span class="sr">-</span><span class="se">\d{2}</span><span class="sr">/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">date</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">//the "index % 2" will return 0 for the first and third position of the date array and 1 </span>
+            <span class="c1">//for the second and then it will be subtract from the item value. The result is the month -1</span>
+            <span class="c1">//because the Date class counts months from the 0</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(...</span><span class="nx">textToConvert</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">-</span> <span class="nx">index</span> <span class="o">%</span> <span class="mi">2</span><span class="p">));</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">"</span><span class="s2">The date format must be AAAA-MM-DD</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="nx">dateToText</span><span class="p">(</span><span class="nx">date</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()}</span><span class="s2">/</span><span class="p">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">/</span><span class="p">${</span><span class="nx">date</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">()}</span><span class="s2">`</span><span class="p">;</span>    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Utilizamos também 2 imagens no formato svg para representar os botões de editar e remover.</p>
+
+<blockquote>
+  <p>na estrutura de pasta temos então:</p>
+  <ul>
+    <li>vanilla-js-crud
+      <ul>
+        <li>index.html</li>
+        <li>js
+          <ul>
+            <li>app
+              <ul>
+                <li>models
+                  <ul>
+                    <li>Product.js</li>
+                    <li>ProductList.js</li>
+                  </ul>
+                </li>
+                <li>view
+                  <ul>
+                    <li>ProductView.js</li>
+                  </ul>
+                </li>
+                <li>controllers
+                  <ul>
+                    <li>ProductController.js</li>
+                  </ul>
+                </li>
+                <li>helpers
+                  <ul>
+                    <li>ArrayUtils.js</li>
+                    <li>DateUtils.js</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>img
+          <ul>
+            <li>edit.svg</li>
+            <li>remove.svg</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+  </div><a class="u-url" href="/crud-vanilla-js" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Thiago.F.T</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Thiago.F.T</li><li><a class="u-email" href="mailto:thiagoftahara@gmail.com">thiagoftahara@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/thiagoft"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">thiagoft</span></a></li><li><a href="https://www.twitter.com/thiagoftahara"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">thiagoftahara</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Blog maneiro sobre tecnologia criado para me auxiliar nos estudos e de quebra ajudar pessoas  que possam estar precisando de uma força.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
