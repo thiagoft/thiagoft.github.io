@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://thiagoft.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://thiagoft.github.io/" rel="alternate" type="text/html" /><updated>2019-11-17T00:17:00-03:00</updated><id>http://thiagoft.github.io/feed.xml</id><title type="html">Thiago.F.T</title><subtitle>Blog maneiro sobre tecnologia criado para me auxiliar nos estudos e de quebra ajudar pessoas  que possam estar precisando de uma força.</subtitle><entry><title type="html">Js Fundamentals</title><link href="http://thiagoft.github.io/js-fundamentals" rel="alternate" type="text/html" title="Js Fundamentals" /><published>2019-11-10T00:00:00-03:00</published><updated>2019-11-10T00:00:00-03:00</updated><id>http://thiagoft.github.io/js-fundamentals</id><content type="html" xml:base="http://thiagoft.github.io/js-fundamentals">&lt;p&gt;Este post é um guia prático abordando tópicos fundamentais da sintaxe atual do javascript.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-02T03:17:46-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Thiago.F.T</title><subtitle>Blog maneiro sobre tecnologia criado para me auxiliar nos estudos e de quebra ajudar pessoas  que possam estar precisando de uma força.</subtitle><entry><title type="html">Começando com Kubernetes utilizando Docker</title><link href="http://localhost:4000/comecando-com-kubernetes-utilizando-docker" rel="alternate" type="text/html" title="Começando com Kubernetes utilizando Docker" /><published>2020-10-02T02:42:23-03:00</published><updated>2020-10-02T02:42:23-03:00</updated><id>http://localhost:4000/comecando-com-kubernetes-utilizando-docker</id><content type="html" xml:base="http://localhost:4000/comecando-com-kubernetes-utilizando-docker">&lt;h1 id=&quot;começando-com-kubernetes-e-docker&quot;&gt;Começando com kubernetes e docker&lt;/h1&gt;
+
+&lt;p&gt;Existem algumas formas de criar um cluster de kubernetes para testarmos principalmente localmente, para quem ja utiliza docker-desktop existe a opção em:
+Preferences &amp;gt; Kubernetes &amp;gt; Enable Kubernetes
+Automaticamente um cluster de Kubernetes será inicializado e então podemos seguir com este rápido quick-start.&lt;/p&gt;
+
+&lt;p&gt;Criando arquivo de configuração do primeiro Pod: nginx-pod.yaml&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Pod&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx-container&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx:latest&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Executando o comando passando como parametro de -f o arquivo nginx-pod.yaml:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ./nginx-pod.yaml
+-&amp;gt; pod/nginx created
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para verificar o Pod&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get pod
+
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          2m43s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Neste momento o Pod está criado porem ainda inacessível.&lt;/p&gt;
+
+&lt;p&gt;Para mais informações sobre o Pod podemos utilizar:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl describe pod nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Dentre várias informações é informado o IP do Pod, porém é um IP interno do Cluster, não ligado diretamente ao Host, é necessário que seja feito um roteamento/exposição.&lt;/p&gt;
+
+&lt;p&gt;Neste caso então criamos mais um arquivo que definirá um serviço que irá descrever o roteamento para este pod, no caso chamaremos de nginx-service.yaml.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;O Kubernetes tem 3 tipos de “Services”&lt;/p&gt;
+
+    &lt;ol&gt;
+      &lt;li&gt;ClusterIP - cria roteamentos dentro e somente dentro do cluster&lt;/li&gt;
+      &lt;li&gt;NodePort - cria roteamentos de fora para dentro do cluster&lt;/li&gt;
+      &lt;li&gt;LoadBalancer - cria um load balance para os serviços&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;Um detalhe importante é que 2 atual também como 1 assim como 3 atual como 2 e 1.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx-service&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NodePort&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;80&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# No caso de ClusterIp somente a definição da porta é o suficiente&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;nodePort&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30000&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Exposição da porta 30000 redirecionando para a porta 80 do Pod&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;# OBS: The range of valid ports is 30000-32767&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;web-server&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ./nginx-service.yaml
+-&amp;gt; service/nginx-service created
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para visualizarmos a execução do service:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get services
+
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;S&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;        AGE
+kubernetes      ClusterIP   10.96.0.1      &amp;lt;none&amp;gt;        443/TCP        55m
+nginx-service   NodePort    10.111.227.2   &amp;lt;none&amp;gt;        80:30000/TCP   2m49s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vale notar que o ip para acesso externo está &lt;none&gt;, porém quando utilizamos o docker-desktop, é feito um bind para o [localhost](http://localhost) de forma automática. Então agora caso acessarmos:&lt;/none&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http://localhost:30000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Será feito o redirecionamento para o Pod e então para a exposição de porta configurada, no caso a porta 80 para o nginx.&lt;/p&gt;
+
+&lt;p&gt;Porém vale lembrar que um Pod por si so não garante a escala, e a resiliência do serviço, é onde entram os Deployments, então podemos criar um arquivo chamado: nginx-deployment.yaml&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;apiVersion&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;apps/v1&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kind&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Deployment&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx-deployment&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx-pod&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;web-server&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;spec&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;containers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx-container&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nginx:latest&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;matchLabels&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;web-server&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;replicas&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl apply &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ./nginx-deplyment.yaml
+-&amp;gt; deployment.apps/nginx-deployment created
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Para vermos o resultado:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;kubectl get pods
+
+NAME                               READY   STATUS    RESTARTS   AGE
+nginx                              1/1     Running   3          57m
+nginx-deployment-f7d8fb454-88xhn   1/1     Running   3          5m16s
+nginx-deployment-f7d8fb454-dl8kk   1/1     Running   3          5m16s
+nginx-deployment-f7d8fb454-lk628   1/1     Running   3          5m16s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Podemos observar o Pod que criamos inicialmente e então as 3 novas réplicas que criamos via Deployment. Este recurso garantirá que todas as réplicas estejam sempre em execução, e como temos o Service ja configurado teremos o balanceamento da carga entre as réplicas.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/thiagoft/kubernetes-quickstart&quot;&gt;Repositório com os arquivos de configuração&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Começando com kubernetes e docker</summary></entry><entry><title type="html">Js Fundamentals</title><link href="http://localhost:4000/js-fundamentals" rel="alternate" type="text/html" title="Js Fundamentals" /><published>2019-11-10T00:00:00-03:00</published><updated>2019-11-10T00:00:00-03:00</updated><id>http://localhost:4000/js-fundamentals</id><content type="html" xml:base="http://localhost:4000/js-fundamentals">&lt;p&gt;Este post é um guia prático abordando tópicos fundamentais da sintaxe atual do javascript.&lt;/p&gt;
 
 &lt;h2 id=&quot;const&quot;&gt;Const&lt;/h2&gt;
 
@@ -165,7 +295,7 @@
 &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// object   - WHAT?!?!?!?!&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// undefined&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;NaN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// number&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Este post é um guia prático abordando tópicos fundamentais da sintaxe atual do javascript.</summary></entry><entry><title type="html">Criando um CRUD com Javascript Vanilla</title><link href="http://thiagoft.github.io/crud-vanilla-js" rel="alternate" type="text/html" title="Criando um CRUD com Javascript Vanilla" /><published>2019-11-04T21:45:55-03:00</published><updated>2019-11-04T21:45:55-03:00</updated><id>http://thiagoft.github.io/crud-vanilla-js</id><content type="html" xml:base="http://thiagoft.github.io/crud-vanilla-js">&lt;p&gt;Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Este post é um guia prático abordando tópicos fundamentais da sintaxe atual do javascript.</summary></entry><entry><title type="html">Criando um CRUD com Javascript Vanilla</title><link href="http://localhost:4000/crud-vanilla-js" rel="alternate" type="text/html" title="Criando um CRUD com Javascript Vanilla" /><published>2019-11-04T21:45:55-03:00</published><updated>2019-11-04T21:45:55-03:00</updated><id>http://localhost:4000/crud-vanilla-js</id><content type="html" xml:base="http://localhost:4000/crud-vanilla-js">&lt;p&gt;Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas.&lt;/p&gt;
 
 &lt;p&gt;E quanto a “CRUD”? Bom, essa é fácil, é um acrônimo para &lt;strong&gt;C&lt;/strong&gt;reate, &lt;strong&gt;R&lt;/strong&gt;ead, &lt;strong&gt;U&lt;/strong&gt;pdate, &lt;strong&gt;Delete&lt;/strong&gt;, ou seja, uma interface ou serviço que realizará operações de Criação, Leitura, Atualização e Deleção.&lt;/p&gt;
 
@@ -720,7 +850,7 @@
       &lt;/ul&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
-&lt;/blockquote&gt;</content><author><name></name></author><summary type="html">Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas.</summary></entry><entry><title type="html">Escrevendo conteúdo com Markdown</title><link href="http://thiagoft.github.io/escrevendo-conteudo-com-markdown" rel="alternate" type="text/html" title="Escrevendo conteúdo com Markdown" /><published>2019-10-28T23:33:41-03:00</published><updated>2019-10-28T23:33:41-03:00</updated><id>http://thiagoft.github.io/escrevendo-conteudo-com-markdown</id><content type="html" xml:base="http://thiagoft.github.io/escrevendo-conteudo-com-markdown">&lt;p&gt;Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name></name></author><summary type="html">Vamos lá… primeiramente, o que é “Vanilla”? Simples… Baunilha em Inglês. Mas o que isso tem a ver com Javascript? Honestamente não sei, mas depois de algumas pesquisas, não encontrei significado algum do porque “Vanilla”, porém, nada mais é do que o Javascript puro, ou seja, livre de frameworks e bibliotecas.</summary></entry><entry><title type="html">Escrevendo conteúdo com Markdown</title><link href="http://localhost:4000/escrevendo-conteudo-com-markdown" rel="alternate" type="text/html" title="Escrevendo conteúdo com Markdown" /><published>2019-10-28T23:33:41-03:00</published><updated>2019-10-28T23:33:41-03:00</updated><id>http://localhost:4000/escrevendo-conteudo-com-markdown</id><content type="html" xml:base="http://localhost:4000/escrevendo-conteudo-com-markdown">&lt;p&gt;Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Markdown foi criado para facilitar a forma de escrever conteúdo para web, porém como tudo por aqui é HTML, então nada mais justo que este conteúdo escrito de forma fácil e legível também ser convertido facilmente em HTML através de um processador.&lt;/li&gt;
