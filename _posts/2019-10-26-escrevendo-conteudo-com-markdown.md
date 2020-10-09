@@ -4,6 +4,21 @@ title:  "Escrevendo conteúdo com Markdown"
 date:   2019-10-28 23:33:41 -0300
 categories: Markdown
 ---
+### Sumário
+* [Intrudução](#introdução)
+* [Sintaxe](#sintaxe)
+  * [Destacando conteudo](#destacando)
+  * [Título](#título)
+  * [Lista de Itens](#lista-de-itens)
+  * [Links](#links)
+  * [Código no texto](#código-no-texto)
+  * [Imagens](#imagens)
+  * [Citações](#citações)
+  * [Tabelas](#tabelas)
+* [Conclusão](#conclusão)
+
+## Introdução
+
 Como primeiro conteúdo, nada melhor que escrever sobre como criar o próprio, então, vamos criar algumas notas aqui:
 
 - Markdown foi criado para facilitar a forma de escrever conteúdo para web, porém como tudo por aqui é HTML, então nada mais justo que este conteúdo escrito de forma fácil e legível também ser convertido facilmente em HTML através de um processador.
@@ -154,6 +169,6 @@ Resultado:
 | Conteúdo 1 | Conteúdo 2 | Conteúdo 3 |
 | Conteúdo 4 | Conteúdo 5 | Conteúdo 6 |
 
-### Conclusão
+## Conclusão
 
 Então é isso, o markdown simplifica muito as coisas para criação de conteúdo em páginas estáticas. Agora você pode criar seu "README" em seu repositório no [github](https://www.github.com) e escrever seu blog em processadores de páginas estáticas.
